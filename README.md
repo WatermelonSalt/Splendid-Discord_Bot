@@ -78,6 +78,7 @@ The customizations are available under the `envsample.envsample` file which will
 * Name of the bot
 * Status of the bot
 * Activity of the bot
+* Prefix of the bot
 
 ## Contribute
 

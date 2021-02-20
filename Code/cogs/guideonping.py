@@ -1,5 +1,11 @@
+import os
+
+import dotenv
 from discord.ext import commands
 
+dotenv.load_dotenv("../../")
+
+BOT_PREFIX = os.getenv('PREFIX')
 
 class guideonping(commands.Cog):
 
@@ -14,7 +20,7 @@ class guideonping(commands.Cog):
 
         if ping in message.content:
 
-            await message.channel.send(f"What is it {message.author.mention}?\nPlease do `$#help` if you want to know how to use me!\nYou can also DM me to use me!")
+            await message.channel.send(f"What is it {message.author.mention}?\nPlease do `{BOT_PREFIX}help` if you want to know how to use me!\nYou can also DM me to use me!")
 
 
 def setup(bot):

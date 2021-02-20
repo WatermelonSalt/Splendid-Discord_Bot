@@ -1,11 +1,9 @@
 import json
 import os
 
-from discord.ext import commands
-
-from dotenv import load_dotenv
-
 import requests
+from discord.ext import commands
+from dotenv import load_dotenv
 
 # Loading the environment variables from ".env"
 load_dotenv("../../")
@@ -14,6 +12,7 @@ load_dotenv("../../")
 TOKEN = os.getenv('DISCORD_TOKEN')
 NEWS_KEY = os.getenv('NEWSAPI_KEY')
 NAME = os.getenv('BOT_NAME')
+BOT_PREFIX = os.getenv('PREFIX')
 
 
 # Definition of a Cog class
@@ -25,7 +24,7 @@ class news(commands.Cog):
     # Declaration of a command "top-headlines" and a function "askfortopheadlines" which uses NEWS API to fetch results based on the options passed to it and atleast one option must be passed
     @commands.command(
         name="top-headlines",
-        help='Usage : $#top-headlines "q=<keywords/topic>" "sources=<sources>" "language=<language(2-digit code)>" "country=<country>"\n\n"sources" and "country" switches cannot be used simultaneously!\n\nThe option "q" filters the results based on the provided keyword/string\n\nThe option "sources" is provided to specify the web sources from which to index the results\n\nThe option "language" is used to specify the language of the news. The option must be a two letter language code\n\nThe option "country" specifies the location of the news, it is also a two letter code\n\nValid options for country : ae|ar|at|au|be|bg|br|ca|ch|cn|co|cu|cz|de|eg|fr|gb|gr|hk|hu|id|ie|il|in|it|jp|kr|lt|lv|ma|mx|my|ng|nl|no|nz|ph|pl|pt|ro|rs|ru|sa|se|sg|si|sk|th|tr|tw|ua|us|ve|za --- These are the 2-letter ISO 3166-1 code of the country you want to get headlines for\n\nIf an option contains whitespaces, enclose them within quotes. The "sources" option takes more than one source to index, separate each source by a comma.\n\nEg:  $#top-headlines "q=bitcoin" "sources=BBC News,N-tv.de" "language=en"',
+        help=f'Usage : {BOT_PREFIX}top-headlines "q=<keywords/topic>" "sources=<sources>" "language=<language(2-digit code)>" "country=<country>"\n\n"sources" and "country" switches cannot be used simultaneously!\n\nThe option "q" filters the results based on the provided keyword/string\n\nThe option "sources" is provided to specify the web sources from which to index the results\n\nThe option "language" is used to specify the language of the news. The option must be a two letter language code\n\nThe option "country" specifies the location of the news, it is also a two letter code\n\nValid options for country : ae|ar|at|au|be|bg|br|ca|ch|cn|co|cu|cz|de|eg|fr|gb|gr|hk|hu|id|ie|il|in|it|jp|kr|lt|lv|ma|mx|my|ng|nl|no|nz|ph|pl|pt|ro|rs|ru|sa|se|sg|si|sk|th|tr|tw|ua|us|ve|za --- These are the 2-letter ISO 3166-1 code of the country you want to get headlines for\n\nIf an option contains whitespaces, enclose them within quotes. The "sources" option takes more than one source to index, separate each source by a comma.\n\nEg:  {BOT_PREFIX}top-headlines "q=bitcoin" "sources=BBC News,N-tv.de" "language=en"',
         pass_context=True)
     async def askfortopheadlines(self, ctx, *args):
         print(f'Arguments passed : {args}')
@@ -53,7 +52,7 @@ class news(commands.Cog):
     # Declaration of a command "everything" and a function "askforeverything" which uses NEWS API to fetch results based on the options passed to it and atleast one option must be passed
     @commands.command(
         name="everything",
-        help='Usage : $#everything "q=<keywords/topic>" "domains=<domains>" "excludeDomains=<domains to exclude>" "from=<a date>" "to=<a date>" "sortBy=<relevancy/popularity/publishedAt>" "language=<language(2-digit code)>"\n\n"domains" and "excludeDomains" switches should not be used simultaneously!\n\nThe option "q" filters the results based on the provided keyword/string\n\nThe option "domains" is provided to specify the web domains from which to index the results\n\nThe option "language" is used to specify the language of the news. The option must be a two letter language code\n\nThe option "excludeDomains" specifies the domains from which the news should not be indexed\n\nIf an option contains whitespaces, enclose them within quotes. The "domains and excludeDomains" options take more than one domain to index, separate each source by a comma\n\nThe option "from" takes a date in "YYYY-MM-DD" format\n\nThe option "to" takes the date in "YYYY-MM-DD" format\n\nThe option "sortBy" option takes one of the followinf three options "relevancy/popularity/publishedAt"\n\nEg:  $#everything "q=bitcoin" "domains=techcrunch.com,thenextweb.com" "language=en" "from=2021-01-15" "to=2021-01-15" "sortBy=popularity"',
+        help=f'Usage : {BOT_PREFIX}everything "q=<keywords/topic>" "domains=<domains>" "excludeDomains=<domains to exclude>" "from=<a date>" "to=<a date>" "sortBy=<relevancy/popularity/publishedAt>" "language=<language(2-digit code)>"\n\n"domains" and "excludeDomains" switches should not be used simultaneously!\n\nThe option "q" filters the results based on the provided keyword/string\n\nThe option "domains" is provided to specify the web domains from which to index the results\n\nThe option "language" is used to specify the language of the news. The option must be a two letter language code\n\nThe option "excludeDomains" specifies the domains from which the news should not be indexed\n\nIf an option contains whitespaces, enclose them within quotes. The "domains and excludeDomains" options take more than one domain to index, separate each source by a comma\n\nThe option "from" takes a date in "YYYY-MM-DD" format\n\nThe option "to" takes the date in "YYYY-MM-DD" format\n\nThe option "sortBy" option takes one of the followinf three options "relevancy/popularity/publishedAt"\n\nEg:  {BOT_PREFIX}everything "q=bitcoin" "domains=techcrunch.com,thenextweb.com" "language=en" "from=2021-01-15" "to=2021-01-15" "sortBy=popularity"',
         pass_context=True)
     async def askforeverything(self, ctx, *args):
         print(f'Arguments passed : {args}')

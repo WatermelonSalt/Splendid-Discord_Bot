@@ -15,9 +15,10 @@ load_dotenv("../")
 
 # Retriving the required environment variables from ".env"
 TOKEN = os.getenv('DISCORD_TOKEN')
+BOT_PREFIX = os.getenv('PREFIX')
 
 # Declaring the command prefix for the discord bot
-bot = commands.Bot(command_prefix="$#", intents=discord.Intents.all())
+bot = commands.Bot(command_prefix=BOT_PREFIX, intents=discord.Intents.all())
 
 
 # On Ready

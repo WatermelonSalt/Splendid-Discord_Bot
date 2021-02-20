@@ -17,3 +17,8 @@ STATUS = []
 # Eg: ACTIVITY = $#help for help
 
 ACTIVITY = []
+
+# Where PREFIX is the sequence of characters without spaces used to define a complete bot command
+# Eg: PREFIX = $%
+
+PREFIX = []
