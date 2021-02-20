@@ -1,0 +1,9 @@
+# .env
+# Rename the file to just ".env" without the quotes
+# This is just a sample .env file
+# Please remove the "[]" and insert your Keys and Names
+# Example: BOT_NAME = BottBoi
+
+DISCORD_TOKEN = []
+NEWSAPI_KEY = []
+BOT_NAME = []
