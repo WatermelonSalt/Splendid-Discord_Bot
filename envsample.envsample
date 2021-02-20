@@ -7,3 +7,13 @@
 DISCORD_TOKEN = []
 NEWSAPI_KEY = []
 BOT_NAME = []
+
+# Where STATUS can be one of
+# [discord.Status.idle, discord.Status.dnd, discord.Status.online, discord.Status.offline, discord.Status.invisible]
+
+STATUS = []
+
+# Where activity can be any string
+# Eg: ACTIVITY = $#help for help
+
+ACTIVITY = []

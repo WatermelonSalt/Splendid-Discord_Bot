@@ -73,7 +73,11 @@ This does not have a "Play with the bot mode" so you need two players to use thi
 
 ## Customization
 
-The only thing customizable until now is the bot's name under the `.env` file
+The customizations are available under the `envsample.envsample` file which will be renamed to `.env`
+
+* Name of the bot
+* Status of the bot
+* Activity of the bot
 
 ## Contribute
 
