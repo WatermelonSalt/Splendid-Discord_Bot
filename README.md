@@ -79,6 +79,7 @@ The customizations are available under the `envsample.envsample` file which will
 * Status of the bot
 * Activity of the bot
 * Prefix of the bot
+* Emojis used for X and O in Tic-Tac-Toe game
 
 ## Contribute
 

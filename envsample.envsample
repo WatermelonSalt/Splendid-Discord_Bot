@@ -22,3 +22,9 @@ ACTIVITY = []
 # Eg: PREFIX = $%
 
 PREFIX = []
+
+# Where X_EMOJI is the emoji for player 1 and O_EMOJI is the emoji for player 2
+# Eg: X_EMOJI = :ballot_box_with_check:
+
+X_EMOJI = []
+O_EMOJI = []

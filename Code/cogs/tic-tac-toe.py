@@ -1,9 +1,18 @@
 # Importing required modules
 
+import os
+
 import asyncio
 
 import discord
 from discord.ext import commands
+
+from dotenv import load_dotenv
+
+load_dotenv('../../')
+
+X_EMOJI = os.getenv('X_EMOJI')
+O_EMOJI = os.getenv('O_EMOJI')
 
 
 event = asyncio.Event()
@@ -29,7 +38,7 @@ class tictactoe(commands.Cog):
             if (message.author == self.player1):
 
                 if (message.content[8:] in self.choices
-                        and self.player == ':ballot_box_with_check:'):
+                        and self.player == X_EMOJI):
 
                     self.choice = message.content[8:]
 
@@ -41,7 +50,7 @@ class tictactoe(commands.Cog):
             if (message.author == self.player2):
 
                 if (message.content[8:] in self.choices
-                        and self.player == ':full_moon:'):
+                        and self.player == O_EMOJI):
 
                     self.choice = message.content[8:]
 
@@ -90,9 +99,9 @@ class tictactoe(commands.Cog):
         await self.InitialGridDraw(player1, player2)
         print()
         self.choices = [x for x in grid.keys()]
-        self.player = ":ballot_box_with_check:"
-        await player1.send("> You are :ballot_box_with_check:")
-        await player2.send("> You are :full_moon:")
+        self.player = X_EMOJI
+        await player1.send(f"> You are {X_EMOJI}")
+        await player2.send(f"> You are {O_EMOJI}")
 
     # Function which draws the initial board
 
@@ -135,11 +144,11 @@ class tictactoe(commands.Cog):
 
     def PlayerShift(self, player):
 
-        if self.player == ":ballot_box_with_check:":
-            return ":full_moon:"
+        if self.player == X_EMOJI:
+            return O_EMOJI
 
-        if self.player == ":full_moon:":
-            return ":ballot_box_with_check:"
+        if self.player == O_EMOJI:
+            return X_EMOJI
 
     # Function which checks if the game is over
 
@@ -184,7 +193,7 @@ class tictactoe(commands.Cog):
 
         valuesinthegrid = [x for x in grid.values()]
         for value in valuesinthegrid:
-            if value == ":ballot_box_with_check:" or value == ":full_moon:":
+            if value == X_EMOJI or value == O_EMOJI:
                 tieornot = True
             else:
                 tieornot = False
@@ -205,11 +214,11 @@ class tictactoe(commands.Cog):
 
         while True:
             print(f"\033[32mThis is {self.player}'s turn\033[0m\n")
-            if (self.player == ":ballot_box_with_check:"):
+            if (self.player == X_EMOJI):
 
                 await player1.send(f"**`Valid choices are {self.choices}`**")
                 await player2.send("**`Waiting for player 'X'`**")
-            if (self.player == ":full_moon:"):
+            if (self.player == O_EMOJI):
 
                 await player2.send(f"**`Valid choices are {self.choices}`**")
                 await player1.send("**`Waiting for player 'O'`**")
@@ -224,12 +233,12 @@ class tictactoe(commands.Cog):
 
             except asyncio.TimeoutError:
 
-                if(self.player == ":ballot_box_with_check:"):
+                if(self.player == X_EMOJI):
 
                     await self.player1.send(f"{player2.mention} did not respond within 1 minute. Ended session!")
                     await self.player2.send(f"{player2.mention} did not respond within 1 minute. Ended session!")
 
-                if(self.player == ":full_moon:"):
+                if(self.player == O_EMOJI):
 
                     await self.player1.send(f"{player1.mention} did not respond within 1 minute. Ended session!")
                     await self.player2.send(f"{player1.mention} did not mention within 1 minute. Ended session!")
@@ -242,15 +251,15 @@ class tictactoe(commands.Cog):
             grid[self.choice] = self.player
             self.choices.remove(self.choice)
             await self.GridDraw(grid, player1, player2)
-            if (self.GameOver(":ballot_box_with_check:", grid) is True):
+            if (self.GameOver(X_EMOJI, grid) is True):
                 print("\n\033[35mX has won the game!\033[0m")
-                await player1.send("> :ballot_box_with_check: has won the game!")
-                await player2.send("> :ballot_box_with_check: has won the game!")
+                await player1.send(f"> {X_EMOJI} has won the game!")
+                await player2.send(f"> {X_EMOJI} has won the game!")
                 break
-            if (self.GameOver(":full_moon:", grid) is True):
+            if (self.GameOver(O_EMOJI, grid) is True):
                 print("\n\033[35mO has won the game!\033[0m")
-                await player1.send("> :full_moon: has won the game!")
-                await player2.send("> :full_moon: has won the game!")
+                await player1.send(f"> {O_EMOJI} has won the game!")
+                await player2.send(f"> {O_EMOJI} has won the game!")
                 break
             if (self.Tie(grid) is True):
                 print(
