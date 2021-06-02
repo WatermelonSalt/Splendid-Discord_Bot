@@ -69,6 +69,7 @@ This does not have a "Play with the bot mode" so you need two players to use thi
 
 ## Upcoming Features
 
+* ~~Tic-Tac-Toe on chat~~
 * Ebay search on chat
 
 ## Customization
