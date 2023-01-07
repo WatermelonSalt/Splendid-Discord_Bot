@@ -1,3 +1,5 @@
+> ⚠ This bot was written with an older API and won't function anymore. This is a raw proof-of-concept project with no polish.
+
 # Splendid - A bot
 
 **Splendid** is a discord bot written in Python using the API which discord provides
@@ -81,9 +83,3 @@ The customizations are available under the `envsample.envsample` file which will
 * Activity of the bot
 * Prefix of the bot
 * Emojis used for X and O in Tic-Tac-Toe game
-
-## Contribute
-
-If you want to contribute to this project by adding new features or developing the existing ones further, please feel free to contact me on Discord
-
-[![Discord](https://img.shields.io/badge/Discord-Visit-ff5500?labelColor=72269e&style=for-the-badge&logo=Discord&logoColor=#ffe600&logoWidth=20&link=https://discordapp.com/users/799197702281494601)](https://discordapp.com/users/799197702281494601)
